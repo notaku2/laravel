@@ -1,0 +1,3 @@
+[submodule "laravel-docker2"]
+	path = laravel-docker2
+	url = git@github.com:ucan-lab/docker-laravel.git
