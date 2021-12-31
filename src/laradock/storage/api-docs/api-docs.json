@@ -1,0 +1,42 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger",
+        "description": "OpenAPI",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/test/hello": {
+            "get": {
+                "tags": [
+                    "タグ"
+                ],
+                "summary": "ハロー",
+                "description": "こんにちは",
+                "operationId": "hello",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "test_message": {
+                                            "description": "メッセージ",
+                                            "type": "string",
+                                            "example": "Hello"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

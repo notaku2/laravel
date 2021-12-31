@@ -62,8 +62,29 @@ services:
 
   # localhost:8080 で phpmyadmin の管理画面にアクセス
   ports:
-     - 8080:80
+     - 8082:80
 
   # セッション情報をボリュームに設定して永続化
   volumes:
      - ./docker/phpmyadmin/sessions:/sessions
+
+ swagger:
+   container_name: swagger-ui
+   image: swaggerapi/swagger-ui
+   volumes:
+     - ./swagger-docs/swagger.json:/usr/share/nginx/html/swagger.json
+   environment:
+     API_URL: swagger.json
+   ports:
+     - "8081:8080"
+  
+ web:
+   container_name: SwaggerUI
+   build: ./docker/app/
+   ports:
+    - 8080:80
+   volumes:
+    - ./volumes/swagger-api:/var/www/html/swagger-api
+ 
+
+
