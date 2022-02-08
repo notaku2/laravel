@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
+/*
 Route::group([
     'prefix' => 'v1', 
     'as' => 'api.', 
@@ -26,3 +27,18 @@ Route::group([
   ], function () {
       Route::apiResource('projects', 'ProjectsApiController');
   });
+*/
+
+Route::group([
+    'prefix' => 'swg', 
+    'as' => 'api.', 
+    'namespace' => 'Api', 
+    'middleware' => ['auth:api']
+  ], function () {
+      Route::apiResource('users', 'UsersApiController');
+      Route::apiResource('titles', 'TitlesApiController');
+      Route::apiResource('chapters', 'ChaptersApiController');
+      Route::apiResource('questions', 'QuestionsApiController');
+      Route::apiResource('answers', 'AnswersApiController');
+  });
+
