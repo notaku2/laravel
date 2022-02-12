@@ -1,11 +1,13 @@
 # どんな docker イメージを利用して構築をするか
 # FROM : ここではPHPの公式イメージである「php:7.4-apache」というあらかじめPHPとApacheがインストールされているイメージを、Docker Hubというサイトからダウンロードしてくるようになっている。
-FROM php:7.4-apache
+FROM php:7.4-fpm
+
+COPY php.ini /usr/local/etc/php/
 
 # 設定ファイルをdockerコンテナ内のPHP、Apacheに読み込ませる
 # ADD：ローカルのファイルをDockerコンテナ内にコピーする
-ADD php.ini /usr/local/etc/php/
-ADD 000-default.conf /etc/apache2/sites-enabled/
+# ADD php.ini /usr/local/etc/php/
+# ADD 000-default.conf /etc/apache2/sites-enabled/
 
 # Composerのインストール
 # RUN：コンテナ内でコマンド実行する
@@ -26,6 +28,12 @@ libpng-dev \
 libpq-dev \
 && docker-php-ext-install pdo_mysql
 
+WORKDIR /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html
+
+RUN composer global require "laravel/installer"
+
 # Laravelで必要になるmodRewriteを有効化する
-RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
-RUN /bin/sh -c a2enmod rewrite
+# RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
+# RUN /bin/sh -c a2enmod rewrite
