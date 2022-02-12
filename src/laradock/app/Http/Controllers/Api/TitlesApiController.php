@@ -37,9 +37,10 @@ class TitlesApiController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('title_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('title_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TitleResource(Title::with(['user'])->get());
+        //return new TitleResource(Title::with(['user'])->get());
+        return new TitleResource(Title::all());
     }
 
     /**
