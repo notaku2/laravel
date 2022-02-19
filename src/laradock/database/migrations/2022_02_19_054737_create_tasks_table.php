@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('content', 100);
             $table->string('person_in_charge', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
