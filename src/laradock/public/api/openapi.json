@@ -1,0 +1,1819 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi Demo Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "L5_SWAGGER_CONST_HOST",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/answers": {
+            "get": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Get list of answers",
+                "description": "Returns list of answers",
+                "operationId": "getAnswersList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AnswerResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Store new answer",
+                "description": "Returns answer data",
+                "operationId": "storeAnswer",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreAnswerRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/answers/{id}": {
+            "get": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Get answer information",
+                "description": "Returns answer data",
+                "operationId": "getAnswerById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Answer id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Update existing answer",
+                "description": "Returns updated answer data",
+                "operationId": "updateAnswer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Answer id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAnswerRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Answers"
+                ],
+                "summary": "Delete existing answer",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteAnswer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Answer id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/chapters": {
+            "get": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Get list of chapters",
+                "description": "Returns list of chapters",
+                "operationId": "getChaptersList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChapterResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Store new chapter",
+                "description": "Returns chapter data",
+                "operationId": "storeChapter",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreChapterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Chapter"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/chapters/{id}": {
+            "get": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Get chapter information",
+                "description": "Returns chapter data",
+                "operationId": "getChapterById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Chapter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Chapter"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Update existing chapter",
+                "description": "Returns updated chapter data",
+                "operationId": "updateChapter",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Chapter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateChapterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Chapter"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Delete existing chapter",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteChapter",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Chapter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/questions": {
+            "get": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Get list of questions",
+                "description": "Returns list of questions",
+                "operationId": "getQuestionsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QuestionResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Store new question",
+                "description": "Returns question data",
+                "operationId": "storeQuestion",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreQuestionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Question"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/questions/{id}": {
+            "get": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Get question information",
+                "description": "Returns question data",
+                "operationId": "getQuestionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Question id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Question"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Update existing question",
+                "description": "Returns updated question data",
+                "operationId": "updateQuestion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Question id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateQuestionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Question"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Questions"
+                ],
+                "summary": "Delete existing question",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteQuestion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Question id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/titles": {
+            "get": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Get list of titles",
+                "description": "Returns list of titles",
+                "operationId": "getTitlesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TitleResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Store new title",
+                "description": "Returns title data",
+                "operationId": "storeTitle",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreTitleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Title"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/titles/{id}": {
+            "get": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Get title information",
+                "description": "Returns title data",
+                "operationId": "getTitleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Title id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Title"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Update existing title",
+                "description": "Returns updated title data",
+                "operationId": "updateTitle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Title id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateTitleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Title"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Delete existing title",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteTitle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Title id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/projects": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get list of projects",
+                "description": "Returns list of projects",
+                "operationId": "getProjectsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store new project",
+                "description": "Returns project data",
+                "operationId": "storeProject",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/projects/{id}": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get project information",
+                "description": "Returns project data",
+                "operationId": "getProjectById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Update existing project",
+                "description": "Returns updated project data",
+                "operationId": "updateProject",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Delete existing project",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteProject",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Answer": {
+                "title": "Answer",
+                "description": "Answer Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "character": {
+                        "title": "Character",
+                        "description": "Name of the new Character",
+                        "type": "string",
+                        "example": "A nice character"
+                    },
+                    "line": {
+                        "title": "Line",
+                        "description": "Name of the new Line",
+                        "type": "string",
+                        "example": "A nice line"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "question_id": {
+                        "title": "Question ID",
+                        "description": "Question's id of the new answer",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "question": {
+                        "$ref": "#/components/schemas/Question"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Answer"
+                }
+            },
+            "Chapter": {
+                "title": "Chapter",
+                "description": "Chapter Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the new chapter",
+                        "type": "string",
+                        "example": "A nice chapter"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "title_id": {
+                        "title": "Title ID",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "$ref": "#/components/schemas/Title"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Chapter"
+                }
+            },
+            "Question": {
+                "title": "Question",
+                "description": "Question Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "character": {
+                        "title": "Character",
+                        "description": "Name of the new Character",
+                        "type": "string",
+                        "example": "A nice character"
+                    },
+                    "line": {
+                        "title": "Line",
+                        "description": "Name of the new Line",
+                        "type": "string",
+                        "example": "A nice line"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "chapter_id": {
+                        "title": "Chapter ID",
+                        "description": "Chaper's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "chapter": {
+                        "$ref": "#/components/schemas/Chapter"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Question"
+                }
+            },
+            "Title": {
+                "title": "Title",
+                "description": "Title Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the new title",
+                        "type": "string",
+                        "example": "A nice title"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "user_id": {
+                        "title": "User ID",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Title"
+                }
+            },
+            "User": {
+                "title": "User",
+                "description": "User Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "description": "Password",
+                        "type": "string",
+                        "format": "Password"
+                    },
+                    "email_verified_at": {
+                        "title": "Email verified at",
+                        "description": "Email verified at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreAnswerRequest": {
+                "title": "Store Answer request",
+                "description": "Store Answer request body data",
+                "required": [
+                    "character",
+                    "line"
+                ],
+                "properties": {
+                    "character": {
+                        "title": "character",
+                        "description": "Character of the new answer",
+                        "type": "string",
+                        "example": "A nice answer"
+                    },
+                    "line": {
+                        "title": "line",
+                        "description": "Line of the new answer",
+                        "type": "string",
+                        "example": "A nice answer"
+                    },
+                    "question_id": {
+                        "title": "question_id",
+                        "description": "Question's id of the new answer",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "StoreChapterRequest": {
+                "title": "Store Chapter request",
+                "description": "Store Chapter request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new chapter",
+                        "type": "string",
+                        "example": "A nice chapter"
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "StoreQuestionRequest": {
+                "title": "Store Question request",
+                "description": "Store Question request body data",
+                "required": [
+                    "character",
+                    "line"
+                ],
+                "properties": {
+                    "character": {
+                        "title": "character",
+                        "description": "Character of the new question",
+                        "type": "string",
+                        "example": "A nice question"
+                    },
+                    "line": {
+                        "title": "line",
+                        "description": "Line of the new question",
+                        "type": "string",
+                        "example": "A nice question"
+                    },
+                    "chapter_id": {
+                        "title": "chapter_id",
+                        "description": "Chapter's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "StoreTitleRequest": {
+                "title": "Store Title request",
+                "description": "Store Title request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new title",
+                        "type": "string",
+                        "example": "A nice title"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "StoreUserRequest": {
+                "title": "Store User request",
+                "description": "Store User request body data",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new user",
+                        "type": "string",
+                        "example": "A nice user"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the new user",
+                        "type": "string",
+                        "example": "This is new user's email"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password of the new user",
+                        "type": "string",
+                        "example": "This is new user's password"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateAnswerRequest": {
+                "title": "Update Answer request",
+                "description": "Update Answer request body data",
+                "required": [
+                    "character",
+                    "line"
+                ],
+                "properties": {
+                    "character": {
+                        "title": "character",
+                        "description": "Character of the new answer",
+                        "type": "string",
+                        "example": "A nice answer"
+                    },
+                    "line": {
+                        "title": "line",
+                        "description": "Line of the new answer",
+                        "type": "string",
+                        "example": "A nice answer"
+                    },
+                    "question_id": {
+                        "title": "question_id",
+                        "description": "Question's id of the new answer",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateChapterRequest": {
+                "title": "Update Chapter request",
+                "description": "Update Chapter request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new chapter",
+                        "type": "string",
+                        "example": "A nice chapter"
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateQuestionRequest": {
+                "title": "Update Question request",
+                "description": "Update Question request body data",
+                "required": [
+                    "character",
+                    "line"
+                ],
+                "properties": {
+                    "character": {
+                        "title": "character",
+                        "description": "Character of the new question",
+                        "type": "string",
+                        "example": "A nice question"
+                    },
+                    "line": {
+                        "title": "line",
+                        "description": "Line of the new question",
+                        "type": "string",
+                        "example": "A nice question"
+                    },
+                    "chapter_id": {
+                        "title": "chapter_id",
+                        "description": "Chapter's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateTitleRequest": {
+                "title": "Update Title request",
+                "description": "Update Title request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new title",
+                        "type": "string",
+                        "example": "A nice title"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateUserRequest": {
+                "title": "Update User request",
+                "description": "Update User request body data",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new user",
+                        "type": "string",
+                        "example": "A nice user"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Email of the new user",
+                        "type": "string",
+                        "example": "This is new user's email"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password of the new user",
+                        "type": "string",
+                        "example": "This is new user's password"
+                    }
+                },
+                "type": "object"
+            },
+            "AnswerResource": {
+                "title": "AnswerResource",
+                "description": "Answer resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Answer"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "AnswerResource"
+                }
+            },
+            "ChapterResource": {
+                "title": "ChapterResource",
+                "description": "Chapter resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Chapter"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ChapterResource"
+                }
+            },
+            "QuestionResource": {
+                "title": "QuestionResource",
+                "description": "Question resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Question"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "QuestionResource"
+                }
+            },
+            "TitleResource": {
+                "title": "TitleResource",
+                "description": "Title resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Title"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "TitleResource"
+                }
+            },
+            "UserResource": {
+                "title": "UserResource",
+                "description": "User resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "UserResource"
+                }
+            },
+            "Project": {
+                "title": "Project",
+                "description": "Project model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Name of the new project",
+                        "type": "string",
+                        "example": "A nice project"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the new project",
+                        "type": "string",
+                        "example": "This is new project's description"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "author_id": {
+                        "title": "Author ID",
+                        "description": "Author's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "author": {
+                        "title": "Author",
+                        "description": "Project author's user model"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Project"
+                }
+            },
+            "ProjectResource": {
+                "title": "ProjectResource",
+                "description": "Project resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "ref": null
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ProjectResource"
+                }
+            },
+            "StoreProjectRequest": {
+                "title": "Store Project request",
+                "description": "Store Project request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new project",
+                        "type": "string",
+                        "example": "A nice project"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new project",
+                        "type": "string",
+                        "example": "This is new project's description"
+                    },
+                    "author_id": {
+                        "title": "author_id",
+                        "description": "Author's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateProjectRequest": {
+                "title": "Update Project request",
+                "description": "Update Project request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new project",
+                        "type": "string",
+                        "example": "A nice project"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new project",
+                        "type": "string",
+                        "example": "This is new project's description"
+                    },
+                    "author_id": {
+                        "title": "author_id",
+                        "description": "Author's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Projects",
+            "description": "API Endpoints of Projects"
+        }
+    ]
+}
