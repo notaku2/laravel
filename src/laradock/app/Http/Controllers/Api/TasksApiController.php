@@ -34,8 +34,8 @@ class TasksApiController extends Controller
      */
     public function index()
     {
-        //return Task::all();
-        return new TaskResource(Task::all());
+        return Task::all();
+        //return new TaskResource(Task::all());　←だと、data:[{}]のjson形式になる。
     }
 
     /**
