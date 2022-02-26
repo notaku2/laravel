@@ -76,10 +76,12 @@ class TitlesApiController extends Controller
     public function store(StoreTitleRequest $request)
     {
         $title = Title::create($request->all());
-
+        /*
         return (new TitleResource($title))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
+        */
+        return (new TitleResource($title));
     }
 
     /**
@@ -119,7 +121,7 @@ class TitlesApiController extends Controller
      */
     public function show(Title $title)
     {
-        abort_if(Gate::denies('title_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('title_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new TitleResource($title->load(['user']));
     }
@@ -170,10 +172,12 @@ class TitlesApiController extends Controller
     public function update(UpdateTitleRequest $request, Title $title)
     {
         $title->update($request->all());
-
+        /*
         return (new TitleResource($title))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
+        */
+        return (new TitleResource($title));
     }
 
     /**
@@ -213,7 +217,7 @@ class TitlesApiController extends Controller
      */
     public function destroy(Title $title)
     {
-        abort_if(Gate::denies('title_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('title_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $title->delete();
 
