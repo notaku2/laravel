@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\TitlesApiController;
 use App\Http\Controllers\Api\ChaptersApiController;
 use App\Http\Controllers\Api\QuestionsApiController;
 use App\Http\Controllers\Api\AnswersApiController;
+use App\Http\Controllers\Api\TasksApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -55,4 +56,6 @@ Route::apiResource('answers', AnswersApiController::class);
 Route::get('/test', function () {
   return response()->json(['message' => 'test'], 200);
 });
+
+Route::apiResource('tasks', TasksApiController::class);
 
