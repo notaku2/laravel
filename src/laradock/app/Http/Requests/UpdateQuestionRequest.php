@@ -8,11 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UpdateQuestionRequest extends FormRequest
 {
+    /*
     public function authorize()
     {
         abort_if(Gate::denies('question_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return true;
     }
+    */
 
     public function rules()
     {
