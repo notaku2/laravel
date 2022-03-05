@@ -22,11 +22,29 @@ class Answer extends Model
     protected $fillable = [
         'character',
         'line',
+        'user_id',
+        'title_id',
+        'chapter_id',
         'question_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    
+    public function title()
+    {
+        return $this->belongsTo('App\Models\Title');
+    }
+    
+    public function chapter()
+    {
+        return $this->belongsTo('App\Models\Chapter');
+    }
 
     public function question()
     {

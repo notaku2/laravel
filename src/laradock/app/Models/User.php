@@ -60,4 +60,31 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Title');
     }
+
+    public function chapters()
+    {
+        return $this->hasMany('App\Models\Chapter');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->titles()->delete();
+            $user->chapters()->delete();
+            $user->questions()->delete();
+            $user->answers()->delete();
+        });
+    }
 }
