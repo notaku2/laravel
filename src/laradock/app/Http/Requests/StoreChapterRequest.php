@@ -22,6 +22,12 @@ class StoreChapterRequest extends FormRequest
             'name' => [
                 'required',
             ],
+            'user_id' =>[
+                'required',
+            ],
+            'title_id' =>[
+                'required',
+            ],
         ];
     }
 }

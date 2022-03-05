@@ -22,6 +22,9 @@ class StoreTitleRequest extends FormRequest
             'name' => [
                 'required',
             ],
+            'user_id' =>[
+                'required',
+            ],
         ];
     }
 }
