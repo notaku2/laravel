@@ -20,7 +20,9 @@ class CreateAnswersTable extends Migration
             //$table->integer('question_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            //$table->foreign('question_id')->references('id')->on('questions');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('title_id')->constrained('titles');
+            $table->foreignId('chapter_id')->constrained('chapters');
             $table->foreignId('question_id')->constrained('questions');
         });
     }
@@ -32,10 +34,18 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('answers');
-         // カラムの削除
-         $table->dropColumn('question_id');
-         // 外部キー制約の削除
-         $table->dropForeign(['question_id']);
+        Schema::table('answers', function (Blueprint $table) {
+            // 外部キー制約の削除
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['title_id']);
+            $table->dropForeign(['chapter_id']);
+            $table->dropForeign(['question_id']);
+            // カラムの削除
+            $table->dropColumn('user_id');
+            $table->dropColumn('title_id');
+            $table->dropColumn('chapter_id');
+            $table->dropColumn('question_id');
+            $table->dropIfExists('answers');
+        });
     }
 }

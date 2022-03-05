@@ -19,7 +19,7 @@ class CreateChaptersTable extends Migration
             //$table->integer('title_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            //$table->foreign('title_id')->references('id')->on('titles');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('title_id')->constrained('titles');
         });
     }
@@ -31,10 +31,14 @@ class CreateChaptersTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('chapters');
-        // カラムの削除
-        $table->dropColumn('title_id');
-        // 外部キー制約の削除
-        $table->dropForeign(['title_id']);
+        Schema::table('chapters', function (Blueprint $table) {
+            // 外部キー制約の削除
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['title_id']);
+            // カラムの削除
+            $table->dropColumn('user_id');
+            $table->dropColumn('title_id');
+            $table->dropIfExists('chapters');
+           });
     }
 }

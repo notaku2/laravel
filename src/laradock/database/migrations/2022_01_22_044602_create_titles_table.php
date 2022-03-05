@@ -30,10 +30,12 @@ class CreateTitlesTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('titles');
-        // カラムの削除
-        $table->dropColumn('user_id');
-        // 外部キー制約の削除
-        $table->dropForeign(['user_id']);
+        Schema::table('titles', function (Blueprint $table) {
+            // 外部キー制約の削除
+            $table->dropForeign(['user_id']);
+            // カラムの削除
+            $table->dropColumn('user_id');
+            $table->dropIfExists('titles');
+           });
     }
 }
