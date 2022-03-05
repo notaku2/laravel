@@ -31,6 +31,12 @@ class User extends Authenticatable
         'email_verified_at',
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -53,5 +59,32 @@ class User extends Authenticatable
     public function titles()
     {
         return $this->hasMany('App\Models\Title');
+    }
+
+    public function chapters()
+    {
+        return $this->hasMany('App\Models\Chapter');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->titles()->delete();
+            $user->chapters()->delete();
+            $user->questions()->delete();
+            $user->answers()->delete();
+        });
     }
 }

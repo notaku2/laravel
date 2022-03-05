@@ -37,7 +37,7 @@ class AnswersApiController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('answer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('answer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new AnswerResource(Answer::with(['question'])->get());
     }
@@ -75,10 +75,12 @@ class AnswersApiController extends Controller
     public function store(StoreAnswerRequest $request)
     {
         $answer = Answer::create($request->all());
-
+        /*
         return (new AnswerResource($answer))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
+        */
+        return (new AnswerResource($answer));
     }
 
     /**
@@ -118,7 +120,7 @@ class AnswersApiController extends Controller
      */
     public function show(Answer $answer)
     {
-        abort_if(Gate::denies('answer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('answer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new AnswerResource($answer->load(['question']));
     }
@@ -169,10 +171,12 @@ class AnswersApiController extends Controller
     public function update(UpdateAnswerRequest $request, Answer $answer)
     {
         $answer->update($request->all());
-
+        /*
         return (new AnswerResource($answer))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
+        */
+        return (new AnswerResource($answer));
     }
 
     /**
@@ -212,7 +216,7 @@ class AnswersApiController extends Controller
      */
     public function destroy(Answer $answer)
     {
-        abort_if(Gate::denies('answer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('answer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $answer->delete();
 

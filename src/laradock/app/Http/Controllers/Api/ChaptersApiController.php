@@ -37,7 +37,7 @@ class ChaptersApiController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('chapter_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('chapter_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ChapterResource(Chapter::with(['title'])->get());
     }
@@ -75,10 +75,12 @@ class ChaptersApiController extends Controller
     public function store(StoreChapterRequest $request)
     {
         $chapter = Chapter::create($request->all());
-
+        /*
         return (new ChapterResource($chapter))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
+        */
+        return (new ChapterResource($chapter));
     }
 
     /**
@@ -118,7 +120,7 @@ class ChaptersApiController extends Controller
      */
     public function show(Chapter $chapter)
     {
-        abort_if(Gate::denies('chapter_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('chapter_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ChapterResource($chapter->load(['title']));
     }
@@ -169,10 +171,12 @@ class ChaptersApiController extends Controller
     public function update(UpdateChapterRequest $request, Chapter $chapter)
     {
         $chapter->update($request->all());
-
+        /*
         return (new ChapterResource($chapter))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
+        */
+        return (new ChapterResource($chapter));
     }
 
     /**
@@ -212,7 +216,7 @@ class ChaptersApiController extends Controller
      */
     public function destroy(Chapter $chapter)
     {
-        abort_if(Gate::denies('chapter_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('chapter_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $chapter->delete();
 

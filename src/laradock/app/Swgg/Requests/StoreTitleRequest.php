@@ -5,7 +5,7 @@
  *      title="Store Title request",
  *      description="Store Title request body data",
  *      type="object",
- *      required={"name"}
+ *      required={"name","user_id"}
  * )
  */
 

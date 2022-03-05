@@ -37,4 +37,24 @@ class Title extends Model
         return $this->hasMany('App\Models\Chapter');
     }
 
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($title) {
+            $title->chapters()->delete();
+            $title->questions()->delete();
+            $title->answers()->delete();
+        });
+    }
 }

@@ -90,6 +90,30 @@ class Question
 
     /**
      * @OA\Property(
+     *      title="User ID",
+     *      description="User's id of the new title",
+     *      format="int64",
+     *      example=1
+     * )
+     *
+     * @var integer
+     */
+    public $user_id;
+    
+    /**
+     * @OA\Property(
+     *      title="Title ID",
+     *      description="Title's id of the new chapter",
+     *      format="int64",
+     *      example=1
+     * )
+     *
+     * @var integer
+     */
+    public $title_id;
+    
+    /**
+     * @OA\Property(
      *      title="Chapter ID",
      *      description="Chaper's id of the new question",
      *      format="int64",
