@@ -22,6 +22,12 @@ class UpdateChapterRequest extends FormRequest
             'name' => [
                 'required',
             ],
+            'user_id' =>[
+                'required',
+            ],
+            'title_id' =>[
+                'required',
+            ],
         ];
     }
 }

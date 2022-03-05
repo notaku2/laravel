@@ -25,6 +25,18 @@ class UpdateAnswerRequest extends FormRequest
             'line' => [
                 'required',
             ],
+            'user_id' =>[
+                'required',
+            ],
+            'title_id' =>[
+                'required',
+            ],
+            'chapter_id' =>[
+                'required',
+            ],
+            'question_id' =>[
+                'required',
+            ],
         ];
     }
 }
