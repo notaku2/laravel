@@ -5,7 +5,7 @@
  *      title="Update Chapter request",
  *      description="Update Chapter request body data",
  *      type="object",
- *      required={"name"}
+ *      required={"name","user_id","title_id"}
  * )
  */
 
@@ -21,6 +21,18 @@ class UpdateChapterRequest
      * @var string
      */
     public $name;
+
+    /**
+     * @OA\Property(
+     *      title="user_id",
+     *      description="Title's id of the new chapter",
+     *      format="int64",
+     *      example=1
+     * )
+     *
+     * @var integer
+     */
+    public $user_id;
 
     /**
      * @OA\Property(

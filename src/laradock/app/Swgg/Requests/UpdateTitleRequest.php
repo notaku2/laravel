@@ -5,7 +5,7 @@
  *      title="Update Title request",
  *      description="Update Title request body data",
  *      type="object",
- *      required={"name"}
+ *      required={"name","user_id"}
  * )
  */
 
