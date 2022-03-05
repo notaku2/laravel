@@ -5,7 +5,7 @@
  *      title="Store Question request",
  *      description="Store Question request body data",
  *      type="object",
- *      required={"character","line"}
+ *      required={"character","line","user_id","title_id","chapter_id"}
  * )
  */
 
@@ -32,6 +32,30 @@ class StoreQuestionRequest
      * @var string
      */
     public $line;
+
+    /**
+     * @OA\Property(
+     *      title="user_id",
+     *      description="Title's id of the new chapter",
+     *      format="int64",
+     *      example=1
+     * )
+     *
+     * @var integer
+     */
+    public $user_id;
+
+    /**
+     * @OA\Property(
+     *      title="title_id",
+     *      description="Title's id of the new chapter",
+     *      format="int64",
+     *      example=1
+     * )
+     *
+     * @var integer
+     */
+    public $title_id;
 
     /**
      * @OA\Property(
