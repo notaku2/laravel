@@ -22,8 +22,8 @@ class Controller
 
      *
      * @OA\Tag(
-     *     name="Projects",
-     *     description="API Endpoints of Projects"
+     *     name="API development",
+     *     description="API development"
      * )
      */
 }
