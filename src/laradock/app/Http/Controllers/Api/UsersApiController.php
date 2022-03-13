@@ -86,7 +86,7 @@ class UsersApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
         */
         //return (new UserResource($user));
-        return User::create($request->all());
+        return $user;
     }
 
     /**
