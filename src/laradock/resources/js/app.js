@@ -2,10 +2,10 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 // コンポーネントをインポート
 import HeaderComponent from "./components/HeaderComponent";
-import TaskListComponent from "./components/TaskListComponent";
-import TaskShowComponent from "./components/TaskShowComponent";
-import TaskCreateComponent from "./components/TaskCreateComponent";
-import TaskEditComponent from "./components/TaskEditComponent";
+import TaskListComponent from "./components/Task/TaskListComponent";
+import TaskShowComponent from "./components/Task/TaskShowComponent";
+import TaskCreateComponent from "./components/Task/TaskCreateComponent";
+import TaskEditComponent from "./components/Task/TaskEditComponent";
 
 
 require('./bootstrap');
@@ -25,10 +25,10 @@ const router = createRouter({
   routes,
 })
 
-const app = createApp({});
-app.use(router);
-app.component('header-component', HeaderComponent);
-app.mount('#app');
+const task = createApp({});
+task.use(router);
+task.component('header-component', HeaderComponent);
+task.mount('#task');
 //https://codelikes.com/laravel-use-vue3/#toc3 #参考サイト
 
 //chrome キャッシュクリア:ctrl+shift+delete
