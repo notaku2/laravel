@@ -41,7 +41,8 @@ class UsersApiController extends Controller
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         //return new UserResource(User::with(['roles'])->get());
-        return new UserResource(User::all());
+        //return new UserResource(User::all());
+        return User::all();
     }
 
     /**
@@ -84,7 +85,8 @@ class UsersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
         */
-        return (new UserResource($user));
+        //return (new UserResource($user));
+        return User::create($request->all());
     }
 
     /**
@@ -126,7 +128,8 @@ class UsersApiController extends Controller
     {
         //abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new UserResource($user);
+        //return new UserResource($user);
+        return $user;
     }
 
     /**
@@ -181,7 +184,8 @@ class UsersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
         */
-        return (new UserResource($user));
+        //return (new UserResource($user));
+        return $user;
     }
 
     /**
