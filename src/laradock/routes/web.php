@@ -20,6 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 */
-Route::get('/tasks', function() {
+
+Route::get('/tasks{any}', function() {
     return view('task');
-})->where('tasks', '.*');
+})->where('any', '.*');
+/*
+Route::get('/users', function() {
+    return view('user');
+})->where('users', '.*');
+*/
+Route::get('/users{any}', function() {
+    return view('user');
+})->where('any', '.*');
