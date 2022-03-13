@@ -618,6 +618,34 @@
                 }
             }
         },
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get list of tasks",
+                "description": "Returns list of tasks",
+                "operationId": "getTasksList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "/titles": {
             "get": {
                 "tags": [
@@ -818,21 +846,21 @@
                 }
             }
         },
-        "/projects": {
+        "/users": {
             "get": {
                 "tags": [
-                    "Projects"
+                    "Users"
                 ],
-                "summary": "Get list of projects",
-                "description": "Returns list of projects",
-                "operationId": "getProjectsList",
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUsersList",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ProjectResource"
+                                    "$ref": "#/components/schemas/UserResource"
                                 }
                             }
                         }
@@ -847,17 +875,17 @@
             },
             "post": {
                 "tags": [
-                    "Projects"
+                    "Users"
                 ],
-                "summary": "Store new project",
-                "description": "Returns project data",
-                "operationId": "storeProject",
+                "summary": "Store new user",
+                "description": "Returns user data",
+                "operationId": "storeUser",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StoreProjectRequest"
+                                "$ref": "#/components/schemas/StoreUserRequest"
                             }
                         }
                     }
@@ -868,7 +896,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Project"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -885,19 +913,19 @@
                 }
             }
         },
-        "/projects/{id}": {
+        "/users/{id}": {
             "get": {
                 "tags": [
-                    "Projects"
+                    "Users"
                 ],
-                "summary": "Get project information",
-                "description": "Returns project data",
-                "operationId": "getProjectById",
+                "summary": "Get user information",
+                "description": "Returns user data",
+                "operationId": "getUserById",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Project id",
+                        "description": "User id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -910,7 +938,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Project"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -928,16 +956,16 @@
             },
             "put": {
                 "tags": [
-                    "Projects"
+                    "Users"
                 ],
-                "summary": "Update existing project",
-                "description": "Returns updated project data",
-                "operationId": "updateProject",
+                "summary": "Update existing user",
+                "description": "Returns updated user data",
+                "operationId": "updateUser",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Project id",
+                        "description": "User id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -949,7 +977,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UpdateProjectRequest"
+                                "$ref": "#/components/schemas/UpdateUserRequest"
                             }
                         }
                     }
@@ -960,7 +988,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Project"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -981,16 +1009,16 @@
             },
             "delete": {
                 "tags": [
-                    "Projects"
+                    "Users"
                 ],
-                "summary": "Delete existing project",
+                "summary": "Delete existing user",
                 "description": "Deletes a record and returns no content",
-                "operationId": "deleteProject",
+                "operationId": "deleteUser",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Project id",
+                        "description": "User id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1065,6 +1093,27 @@
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
                     },
+                    "user_id": {
+                        "title": "User ID",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "Title ID",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "chapter_id": {
+                        "title": "Chapter ID",
+                        "description": "Chaper's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
                     "question_id": {
                         "title": "Question ID",
                         "description": "Question's id of the new answer",
@@ -1118,6 +1167,13 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
+                    },
+                    "user_id": {
+                        "title": "User ID",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "title_id": {
                         "title": "Title ID",
@@ -1179,6 +1235,20 @@
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
                     },
+                    "user_id": {
+                        "title": "User ID",
+                        "description": "User's id of the new title",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "Title ID",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
                     "chapter_id": {
                         "title": "Chapter ID",
                         "description": "Chaper's id of the new question",
@@ -1193,6 +1263,62 @@
                 "type": "object",
                 "xml": {
                     "name": "Question"
+                }
+            },
+            "Task": {
+                "title": "Task",
+                "description": "Task Swagger",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of the new task",
+                        "type": "string",
+                        "example": "A nice title"
+                    },
+                    "content": {
+                        "title": "Content",
+                        "description": "Content of the new task",
+                        "type": "string",
+                        "example": "A nice content"
+                    },
+                    "person_in_charge": {
+                        "title": "Person_in_charge",
+                        "description": "Person_in_charge of the new task",
+                        "type": "string",
+                        "example": "A nice person_in_charge"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Task"
                 }
             },
             "Title": {
@@ -1313,7 +1439,11 @@
                 "description": "Store Answer request body data",
                 "required": [
                     "character",
-                    "line"
+                    "line",
+                    "user_id",
+                    "title_id",
+                    "chapter_id",
+                    "question_id"
                 ],
                 "properties": {
                     "character": {
@@ -1327,6 +1457,27 @@
                         "description": "Line of the new answer",
                         "type": "string",
                         "example": "A nice answer"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "chapter_id": {
+                        "title": "chapter_id",
+                        "description": "Chapter's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "question_id": {
                         "title": "question_id",
@@ -1342,7 +1493,9 @@
                 "title": "Store Chapter request",
                 "description": "Store Chapter request body data",
                 "required": [
-                    "name"
+                    "name",
+                    "user_id",
+                    "title_id"
                 ],
                 "properties": {
                     "name": {
@@ -1350,6 +1503,13 @@
                         "description": "Name of the new chapter",
                         "type": "string",
                         "example": "A nice chapter"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "title_id": {
                         "title": "title_id",
@@ -1366,7 +1526,10 @@
                 "description": "Store Question request body data",
                 "required": [
                     "character",
-                    "line"
+                    "line",
+                    "user_id",
+                    "title_id",
+                    "chapter_id"
                 ],
                 "properties": {
                     "character": {
@@ -1380,6 +1543,20 @@
                         "description": "Line of the new question",
                         "type": "string",
                         "example": "A nice question"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "chapter_id": {
                         "title": "chapter_id",
@@ -1395,7 +1572,8 @@
                 "title": "Store Title request",
                 "description": "Store Title request body data",
                 "required": [
-                    "name"
+                    "name",
+                    "user_id"
                 ],
                 "properties": {
                     "name": {
@@ -1449,7 +1627,11 @@
                 "description": "Update Answer request body data",
                 "required": [
                     "character",
-                    "line"
+                    "line",
+                    "user_id",
+                    "title_id",
+                    "chapter_id",
+                    "question_id"
                 ],
                 "properties": {
                     "character": {
@@ -1463,6 +1645,27 @@
                         "description": "Line of the new answer",
                         "type": "string",
                         "example": "A nice answer"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "chapter_id": {
+                        "title": "chapter_id",
+                        "description": "Chapter's id of the new question",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "question_id": {
                         "title": "question_id",
@@ -1478,7 +1681,9 @@
                 "title": "Update Chapter request",
                 "description": "Update Chapter request body data",
                 "required": [
-                    "name"
+                    "name",
+                    "user_id",
+                    "title_id"
                 ],
                 "properties": {
                     "name": {
@@ -1486,6 +1691,13 @@
                         "description": "Name of the new chapter",
                         "type": "string",
                         "example": "A nice chapter"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "title_id": {
                         "title": "title_id",
@@ -1502,7 +1714,10 @@
                 "description": "Update Question request body data",
                 "required": [
                     "character",
-                    "line"
+                    "line",
+                    "user_id",
+                    "title_id",
+                    "chapter_id"
                 ],
                 "properties": {
                     "character": {
@@ -1516,6 +1731,20 @@
                         "description": "Line of the new question",
                         "type": "string",
                         "example": "A nice question"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title_id": {
+                        "title": "title_id",
+                        "description": "Title's id of the new chapter",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
                     },
                     "chapter_id": {
                         "title": "chapter_id",
@@ -1531,7 +1760,8 @@
                 "title": "Update Title request",
                 "description": "Update Title request body data",
                 "required": [
-                    "name"
+                    "name",
+                    "user_id"
                 ],
                 "properties": {
                     "name": {
@@ -1634,6 +1864,24 @@
                     "name": "QuestionResource"
                 }
             },
+            "TaskResource": {
+                "title": "TaskResource",
+                "description": "Task resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Task"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "TaskResource"
+                }
+            },
             "TitleResource": {
                 "title": "TitleResource",
                 "description": "Title resource",
@@ -1669,150 +1917,13 @@
                 "xml": {
                     "name": "UserResource"
                 }
-            },
-            "Project": {
-                "title": "Project",
-                "description": "Project model",
-                "properties": {
-                    "id": {
-                        "title": "ID",
-                        "description": "ID",
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 1
-                    },
-                    "name": {
-                        "title": "Name",
-                        "description": "Name of the new project",
-                        "type": "string",
-                        "example": "A nice project"
-                    },
-                    "description": {
-                        "title": "Description",
-                        "description": "Description of the new project",
-                        "type": "string",
-                        "example": "This is new project's description"
-                    },
-                    "created_at": {
-                        "title": "Created at",
-                        "description": "Created at",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2020-01-27 17:50:45"
-                    },
-                    "updated_at": {
-                        "title": "Updated at",
-                        "description": "Updated at",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2020-01-27 17:50:45"
-                    },
-                    "deleted_at": {
-                        "title": "Deleted at",
-                        "description": "Deleted at",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2020-01-27 17:50:45"
-                    },
-                    "author_id": {
-                        "title": "Author ID",
-                        "description": "Author's id of the new project",
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 1
-                    },
-                    "author": {
-                        "title": "Author",
-                        "description": "Project author's user model"
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "Project"
-                }
-            },
-            "ProjectResource": {
-                "title": "ProjectResource",
-                "description": "Project resource",
-                "properties": {
-                    "data": {
-                        "title": "Data",
-                        "description": "Data wrapper",
-                        "type": "array",
-                        "items": {
-                            "ref": null
-                        }
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "ProjectResource"
-                }
-            },
-            "StoreProjectRequest": {
-                "title": "Store Project request",
-                "description": "Store Project request body data",
-                "required": [
-                    "name"
-                ],
-                "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the new project",
-                        "type": "string",
-                        "example": "A nice project"
-                    },
-                    "description": {
-                        "title": "description",
-                        "description": "Description of the new project",
-                        "type": "string",
-                        "example": "This is new project's description"
-                    },
-                    "author_id": {
-                        "title": "author_id",
-                        "description": "Author's id of the new project",
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 1
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateProjectRequest": {
-                "title": "Update Project request",
-                "description": "Update Project request body data",
-                "required": [
-                    "name"
-                ],
-                "properties": {
-                    "name": {
-                        "title": "name",
-                        "description": "Name of the new project",
-                        "type": "string",
-                        "example": "A nice project"
-                    },
-                    "description": {
-                        "title": "description",
-                        "description": "Description of the new project",
-                        "type": "string",
-                        "example": "This is new project's description"
-                    },
-                    "author_id": {
-                        "title": "author_id",
-                        "description": "Author's id of the new project",
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 1
-                    }
-                },
-                "type": "object"
             }
         }
     },
     "tags": [
         {
-            "name": "Projects",
-            "description": "API Endpoints of Projects"
+            "name": "API development",
+            "description": "API development"
         }
     ]
 }
