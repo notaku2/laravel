@@ -32,3 +32,7 @@ Route::get('/users', function() {
 Route::get('/users{any}', function() {
     return view('user');
 })->where('any', '.*');
+
+Route::get('/titles{any}', function() {
+    return view('title');
+})->where('any', '.*');
