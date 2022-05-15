@@ -40,7 +40,8 @@ class TitlesApiController extends Controller
         //abort_if(Gate::denies('title_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         //return new TitleResource(Title::with(['user'])->get());
-        return new TitleResource(Title::all());
+        //return new TitleResource(Title::all());
+        return Title::all();
     }
 
     /**
@@ -81,7 +82,8 @@ class TitlesApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
         */
-        return (new TitleResource($title));
+        //return (new TitleResource($title));
+        return $title;
     }
 
     /**
@@ -123,7 +125,8 @@ class TitlesApiController extends Controller
     {
         //abort_if(Gate::denies('title_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TitleResource($title->load(['user']));
+        //return new TitleResource($title->load(['user']));
+        return $title;
     }
 
     /**
@@ -177,7 +180,8 @@ class TitlesApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
         */
-        return (new TitleResource($title));
+        //return (new TitleResource($title));
+        return $title;
     }
 
     /**
