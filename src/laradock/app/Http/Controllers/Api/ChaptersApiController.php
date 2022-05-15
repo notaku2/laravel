@@ -39,7 +39,8 @@ class ChaptersApiController extends Controller
     {
         //abort_if(Gate::denies('chapter_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ChapterResource(Chapter::with(['title'])->get());
+        //return new ChapterResource(Chapter::with(['title'])->get());
+        return Chapter::all();
     }
 
     /**
@@ -80,7 +81,8 @@ class ChaptersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
         */
-        return (new ChapterResource($chapter));
+        //return (new ChapterResource($chapter));
+        return $chapter;
     }
 
     /**
@@ -122,7 +124,8 @@ class ChaptersApiController extends Controller
     {
         //abort_if(Gate::denies('chapter_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ChapterResource($chapter->load(['title']));
+        //return new ChapterResource($chapter->load(['title']));
+        return $chapter;
     }
 
     /**
@@ -176,7 +179,8 @@ class ChaptersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
         */
-        return (new ChapterResource($chapter));
+        //return (new ChapterResource($chapter));
+        return $chapter;
     }
 
     /**
