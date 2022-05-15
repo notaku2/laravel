@@ -21,6 +21,13 @@ import TitleShowComponent from "./components/Title/TitleShowComponent";
 import TitleCreateComponent from "./components/Title/TitleCreateComponent";
 import TitleEditComponent from "./components/Title/TitleEditComponent";
 
+//Chapter
+import ChapterHeaderComponent from "./components/Chapter/ChapterHeaderComponent";
+import ChapterListComponent from "./components/Chapter/ChapterListComponent";
+import ChapterShowComponent from "./components/Chapter/ChapterShowComponent";
+import ChapterCreateComponent from "./components/Chapter/ChapterCreateComponent";
+import ChapterEditComponent from "./components/Chapter/ChapterEditComponent";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -37,7 +44,11 @@ const routes = [
     {path: '/titles', name: 'title.list', component: TitleListComponent},
     {path: '/titles/:titleId', name: 'title.show', component: TitleShowComponent, props: true},
     {path: '/titles/create', name: 'title.create', component: TitleCreateComponent},
-    {path: '/titles/:titleId/edit', name: 'title.edit', component: TitleEditComponent, props: true}
+    {path: '/titles/:titleId/edit', name: 'title.edit', component: TitleEditComponent, props: true},
+    {path: '/chapters', name: 'chapter.list', component: ChapterListComponent},
+    {path: '/chapters/:chapterId', name: 'chapter.show', component: ChapterShowComponent, props: true},
+    {path: '/chapters/create', name: 'chapter.create', component: ChapterCreateComponent},
+    {path: '/chapters/:chapterId/edit', name: 'chapter.edit', component: ChapterEditComponent, props: true}
 ]
 /*
 const users = [
@@ -52,21 +63,30 @@ const router = createRouter({
   routes,
 })
 
+//task
 const task = createApp({});
 task.use(router);
 task.component('header-component', HeaderComponent);
 task.mount('#task');
 //https://codelikes.com/laravel-use-vue3/#toc3 #参考サイト
 
+//user
 const user = createApp({});
 user.use(router);
 user.component('userheader-component', UserHeaderComponent);
 user.mount('#user');
 
+//title
 const title = createApp({});
 user.use(router);
 user.component('titleheader-component', TitleHeaderComponent);
 user.mount('#title');
+
+//chapter
+const chapter = createApp({});
+user.use(router);
+user.component('chapterheader-component', ChapterHeaderComponent);
+user.mount('#chapter');
 
 //chrome キャッシュクリア:ctrl+shift+delete
 //下記エラーが出た場合にchrome キャッシュクリアを試みる。解決する可能性がある。
