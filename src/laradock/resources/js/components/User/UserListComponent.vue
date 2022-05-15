@@ -9,6 +9,7 @@
                 <th scope="col">Show</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
+                <th scope="col">Task</th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +29,11 @@
                 </td>
                 <td>
                      <button class="btn btn-danger" v-on:click="deleteUser(user.id)">Delete</button>
+                </td>
+                <td>
+                    <router-link v-bind:to="{name: 'task.show', params: {taskId: user.id }}">
+                        <button class="btn btn-success">Task</button>
+                    </router-link>
                 </td>
             </tr>
             </tbody>
