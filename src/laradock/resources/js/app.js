@@ -28,6 +28,13 @@ import ChapterShowComponent from "./components/Chapter/ChapterShowComponent";
 import ChapterCreateComponent from "./components/Chapter/ChapterCreateComponent";
 import ChapterEditComponent from "./components/Chapter/ChapterEditComponent";
 
+//Question
+import QuestionHeaderComponent from "./components/Question/QuestionHeaderComponent";
+import QuestionListComponent from "./components/Question/QuestionListComponent";
+import QuestionShowComponent from "./components/Question/QuestionShowComponent";
+import QuestionCreateComponent from "./components/Question/QuestionCreateComponent";
+import QuestionEditComponent from "./components/Question/QuestionEditComponent";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -48,7 +55,11 @@ const routes = [
     {path: '/chapters', name: 'chapter.list', component: ChapterListComponent},
     {path: '/chapters/:chapterId', name: 'chapter.show', component: ChapterShowComponent, props: true},
     {path: '/chapters/create', name: 'chapter.create', component: ChapterCreateComponent},
-    {path: '/chapters/:chapterId/edit', name: 'chapter.edit', component: ChapterEditComponent, props: true}
+    {path: '/chapters/:chapterId/edit', name: 'chapter.edit', component: ChapterEditComponent, props: true},
+    {path: '/questions', name: 'question.list', component: QuestionListComponent},
+    {path: '/questions/:questionId', name: 'question.show', component: QuestionShowComponent, props: true},
+    {path: '/questions/create', name: 'question.create', component: QuestionCreateComponent},
+    {path: '/questions/:questionId/edit', name: 'question.edit', component: QuestionEditComponent, props: true}
 ]
 /*
 const users = [
@@ -87,6 +98,12 @@ const chapter = createApp({});
 user.use(router);
 user.component('chapterheader-component', ChapterHeaderComponent);
 user.mount('#chapter');
+
+//question
+const question = createApp({});
+user.use(router);
+user.component('questionheader-component', QuestionHeaderComponent);
+user.mount('#question');
 
 //chrome キャッシュクリア:ctrl+shift+delete
 //下記エラーが出た場合にchrome キャッシュクリアを試みる。解決する可能性がある。
