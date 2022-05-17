@@ -39,7 +39,8 @@ class QuestionsApiController extends Controller
     {
         //abort_if(Gate::denies('question_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new QuestionResource(Question::with(['chapter'])->get());
+        //return new QuestionResource(Question::with(['chapter'])->get());
+        return Question::all();
     }
 
     /**
@@ -80,7 +81,8 @@ class QuestionsApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
         */
-        return (new QuestionResource($question));
+        //return (new QuestionResource($question));
+        return $question;
     }
 
     /**
@@ -122,7 +124,8 @@ class QuestionsApiController extends Controller
     {
         //abort_if(Gate::denies('question_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new QuestionResource($question->load(['chapter']));
+        //return new QuestionResource($question->load(['chapter']));
+        return $question;
     }
 
     /**
@@ -176,7 +179,8 @@ class QuestionsApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
         */
-        return (new QuestionResource($question));
+        //return (new QuestionResource($question));
+        return $question;
     }
 
     /**
