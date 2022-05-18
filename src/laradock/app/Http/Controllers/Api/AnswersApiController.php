@@ -39,7 +39,8 @@ class AnswersApiController extends Controller
     {
         //abort_if(Gate::denies('answer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AnswerResource(Answer::with(['question'])->get());
+        //return new AnswerResource(Answer::with(['question'])->get());
+        return Answer::all();
     }
 
     /**
@@ -80,7 +81,8 @@ class AnswersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
         */
-        return (new AnswerResource($answer));
+        //return (new AnswerResource($answer));
+        return $answer;
     }
 
     /**
@@ -122,7 +124,8 @@ class AnswersApiController extends Controller
     {
         //abort_if(Gate::denies('answer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AnswerResource($answer->load(['question']));
+        //return new AnswerResource($answer->load(['question']));
+        return $answer;
     }
 
     /**
@@ -176,7 +179,8 @@ class AnswersApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
         */
-        return (new AnswerResource($answer));
+        //return (new AnswerResource($answer));
+        return $answer;
     }
 
     /**
