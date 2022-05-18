@@ -9,11 +9,11 @@
                     </div>
                     <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Character</label>
-                        <input type="text" class="col-sm-9 form-control" id="name" v-model="question.character">
+                        <input type="text" class="col-sm-9 form-control" id="character" v-model="question.character">
                     </div>
                     <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Line</label>
-                        <input type="text" class="col-sm-9 form-control" id="name" v-model="question.line">
+                        <input type="text" class="col-sm-9 form-control" id="line" v-model="question.line">
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">User_id</label>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Chapter_id</label>
-                        <input type="text" class="col-sm-9 form-control" id="title_id" v-model="question.chapter_id">
+                        <input type="text" class="col-sm-9 form-control" id="chapter_id" v-model="question.chapter_id">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
