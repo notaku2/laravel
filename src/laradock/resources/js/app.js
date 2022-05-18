@@ -35,6 +35,13 @@ import QuestionShowComponent from "./components/Question/QuestionShowComponent";
 import QuestionCreateComponent from "./components/Question/QuestionCreateComponent";
 import QuestionEditComponent from "./components/Question/QuestionEditComponent";
 
+//Answer
+import AnswerHeaderComponent from "./components/Answer/AnswerHeaderComponent";
+import AnswerListComponent from "./components/Answer/AnswerListComponent";
+import AnswerShowComponent from "./components/Answer/AnswerShowComponent";
+import AnswerCreateComponent from "./components/Answer/AnswerCreateComponent";
+import AnswerEditComponent from "./components/Answer/AnswerEditComponent";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -59,7 +66,11 @@ const routes = [
     {path: '/questions', name: 'question.list', component: QuestionListComponent},
     {path: '/questions/:questionId', name: 'question.show', component: QuestionShowComponent, props: true},
     {path: '/questions/create', name: 'question.create', component: QuestionCreateComponent},
-    {path: '/questions/:questionId/edit', name: 'question.edit', component: QuestionEditComponent, props: true}
+    {path: '/questions/:questionId/edit', name: 'question.edit', component: QuestionEditComponent, props: true},
+    {path: '/answers', name: 'answer.list', component: AnswerListComponent},
+    {path: '/answers/:answerId', name: 'answer.show', component: AnswerShowComponent, props: true},
+    {path: '/answers/create', name: 'answer.create', component: AnswerCreateComponent},
+    {path: '/answers/:answerId/edit', name: 'answer.edit', component: AnswerEditComponent, props: true}
 ]
 /*
 const users = [
@@ -104,6 +115,12 @@ const question = createApp({});
 user.use(router);
 user.component('questionheader-component', QuestionHeaderComponent);
 user.mount('#question');
+
+//answer
+const answer = createApp({});
+user.use(router);
+user.component('answerheader-component', AnswerHeaderComponent);
+user.mount('#answer');
 
 //chrome キャッシュクリア:ctrl+shift+delete
 //下記エラーが出た場合にchrome キャッシュクリアを試みる。解決する可能性がある。
