@@ -49,3 +49,8 @@ Route::get('/chapters{any}', function() {
 Route::get('/questions{any}', function() {
     return view('question');
 })->where('any', '.*');
+
+//answer
+Route::get('/answers{any}', function() {
+    return view('answer');
+})->where('any', '.*');
