@@ -57,7 +57,7 @@ const routes = [
     {path: '/users/:userId/edit', name: 'user.edit', component: UserEditComponent, props: true},
     {path: '/titles', name: 'title.list', component: TitleListComponent},
     {path: '/titles/:titleId', name: 'title.show', component: TitleShowComponent, props: true},
-    {path: '/titles/create', name: 'title.create', component: TitleCreateComponent},
+    {path: '/titles/create', name: 'title.create', component: TitleCreateComponent, props: true},
     {path: '/titles/:titleId/edit', name: 'title.edit', component: TitleEditComponent, props: true},
     {path: '/chapters', name: 'chapter.list', component: ChapterListComponent},
     {path: '/chapters/:chapterId', name: 'chapter.show', component: ChapterShowComponent, props: true},
