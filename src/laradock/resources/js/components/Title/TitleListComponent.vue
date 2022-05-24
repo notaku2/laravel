@@ -29,8 +29,8 @@
                      <button class="btn btn-danger" v-on:click="deleteTitle(title.id)">Delete</button>
                 </td>
                 <td>
-                    <router-link v-bind:to="{name: 'task.show', params: {taskId: title.id }}">
-                        <button class="btn btn-success">Task</button>
+                    <router-link v-bind:to="{name: 'chapter.create', params: {titleId: title.id }}">
+                        <button class="btn btn-success">Chapter</button>
                     </router-link>
                 </td>
             </tr>
