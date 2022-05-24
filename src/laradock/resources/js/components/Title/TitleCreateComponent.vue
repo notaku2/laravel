@@ -20,9 +20,26 @@
 
 <script>
 export default {
+    props: {
+            titleId: String
+        },
+    /*
+    computed: {
+        user_id: {
+            get () {
+                return this.$props.titleId
+            },
+            set (value) {
+                this.emit('update:modelValue', value)
+            }
+        }
+    },
+    */
     data: function () {
         return {
-            title: {}
+            title: {
+                user_id: this.$props.titleId
+            }
         }
     },
     methods: {
