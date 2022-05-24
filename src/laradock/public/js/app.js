@@ -22831,12 +22831,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    titleId: String
+  },
   data: function data() {
     return {
-      chapter: {}
+      chapter: {},
+      title: {}
     };
   },
   methods: {
+    /*
+    getTitle() {
+        axios.get('/api/titles/' + this.titleId)
+            .then((res) => {
+                this.title = res.data;
+                console.log(this.title);
+            });
+    },
+    */
     submit: function submit() {
       var _this = this;
 
@@ -22846,7 +22859,33 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+    /*
+    addChapter(){
+        this.chapter.title_id = this.title.id;
+        this.chapter.user_id = this.title.user_id;
+    }
+    */
+
+  },
+  created: function created() {
+    var _this2 = this;
+
+    axios.get('/api/titles/' + this.titleId).then(function (res) {
+      _this2.title = res.data;
+      _this2.chapter.title_id = _this2.title.id; //chapterにtitle.idを代入
+
+      _this2.chapter.user_id = _this2.title.user_id; //chapterにtitle.user_idを代入
+    });
   }
+  /*
+  mounted() {
+      //this.getTitle();
+      //console.log(this.title.user_id);
+      this.addChapter();
+      console.log(this.chapter);
+  }
+  */
+
 });
 
 /***/ }),
@@ -23335,9 +23374,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    userId: String
+  },
+
+  /*
+  computed: {
+      user_id: {
+          get () {
+              return this.$props.titleId
+          },
+          set (value) {
+              this.emit('update:modelValue', value)
+          }
+      }
+  },
+  */
   data: function data() {
     return {
-      title: {}
+      title: {
+        user_id: this.$props.userId
+      }
     };
   },
   methods: {
@@ -26443,7 +26500,7 @@ var _hoisted_7 = ["onClick"];
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-success"
-}, "Task", -1
+}, "Chapter", -1
 /* HOISTED */
 );
 
@@ -26498,9 +26555,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
-        name: 'task.show',
+        name: 'chapter.create',
         params: {
-          taskId: title.id
+          titleId: title.id
         }
       }
     }, {
@@ -26945,7 +27002,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   scope: "col"
 }, "Delete"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
-}, "Task")])], -1
+}, "Title")])], -1
 /* HOISTED */
 );
 
@@ -26969,7 +27026,7 @@ var _hoisted_7 = ["onClick"];
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-success"
-}, "Task", -1
+}, "Title", -1
 /* HOISTED */
 );
 
@@ -27026,9 +27083,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
-        name: 'task.show',
+        name: 'title.create',
         params: {
-          taskId: user.id
+          userId: user.id
         }
       }
     }, {
@@ -27269,7 +27326,8 @@ var routes = [{
 }, {
   path: '/titles/create',
   name: 'title.create',
-  component: _components_Title_TitleCreateComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_Title_TitleCreateComponent__WEBPACK_IMPORTED_MODULE_14__["default"],
+  props: true
 }, {
   path: '/titles/:titleId/edit',
   name: 'title.edit',
@@ -27287,7 +27345,8 @@ var routes = [{
 }, {
   path: '/chapters/create',
   name: 'chapter.create',
-  component: _components_Chapter_ChapterCreateComponent__WEBPACK_IMPORTED_MODULE_19__["default"]
+  component: _components_Chapter_ChapterCreateComponent__WEBPACK_IMPORTED_MODULE_19__["default"],
+  props: true
 }, {
   path: '/chapters/:chapterId/edit',
   name: 'chapter.edit',
