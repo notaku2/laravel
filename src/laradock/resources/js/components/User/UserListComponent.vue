@@ -31,7 +31,7 @@
                      <button class="btn btn-danger" v-on:click="deleteUser(user.id)">Delete</button>
                 </td>
                 <td>
-                    <router-link v-bind:to="{name: 'title.create', params: {titleId: user.id }}">
+                    <router-link v-bind:to="{name: 'title.create', params: {userId: user.id }}">
                         <button class="btn btn-success">Title</button>
                     </router-link>
                 </td>

@@ -21,7 +21,7 @@
 <script>
 export default {
     props: {
-            titleId: String
+            userId: String
         },
     /*
     computed: {
@@ -38,7 +38,7 @@ export default {
     data: function () {
         return {
             title: {
-                user_id: this.$props.titleId
+                user_id: this.$props.userId
             }
         }
     },
