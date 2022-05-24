@@ -24,18 +24,53 @@
 
 <script>
 export default {
+    props: {
+        titleId: String
+    },
     data: function () {
         return {
-            chapter: {}
+            chapter: {},
+            title: {}
         }
     },
     methods: {
+        /*
+        getTitle() {
+            axios.get('/api/titles/' + this.titleId)
+                .then((res) => {
+                    this.title = res.data;
+                    console.log(this.title);
+                });
+        },
+        */
         submit() {
             axios.post('/api/chapters', this.chapter)
                 .then((res) => {
                     this.$router.push({name: 'chapter.list'});
                 });
+        },
+        /*
+        addChapter(){
+            this.chapter.title_id = this.title.id;
+            this.chapter.user_id = this.title.user_id;
         }
+        */
+    },
+    created() {
+        axios.get('/api/titles/' + this.titleId)
+            .then((res) => {
+                this.title = res.data;
+                this.chapter.title_id = this.title.id; //chapterにtitle.idを代入
+                this.chapter.user_id = this.title.user_id; //chapterにtitle.user_idを代入
+            });
+    },
+    /*
+    mounted() {
+        //this.getTitle();
+        //console.log(this.title.user_id);
+        this.addChapter();
+        console.log(this.chapter);
     }
+    */
 }
 </script>
