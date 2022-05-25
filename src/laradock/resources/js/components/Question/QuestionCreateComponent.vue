@@ -4,6 +4,9 @@
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit">
                     <div class="form-group row">
+                        <p>{{chapter.name}}</p>
+                    </div>
+                    <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Character</label>
                         <input type="text" class="col-sm-9 form-control" id="character" v-model="question.character">
                     </div>
@@ -32,9 +35,13 @@
 
 <script>
 export default {
+    props: {
+        chapterId: String
+    },
     data: function () {
         return {
-            question: {}
+            question: {},
+            chapter: {}
         }
     },
     methods: {
@@ -44,6 +51,15 @@ export default {
                     this.$router.push({name: 'question.list'});
                 });
         }
-    }
+    },
+    created() {
+        axios.get('/api/chapters/' + this.chapterId)
+            .then((res) => {
+                this.chapter = res.data;
+                this.question.chapter_id = this.chapter.id;
+                this.question.user_id = this.chapter.user_id;
+                this.question.title_id = this.chapter.title_id;
+            });
+    },
 }
 </script>
