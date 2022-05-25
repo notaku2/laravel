@@ -4,7 +4,10 @@
             <div class="col-sm-6">
                 <form v-on:submit.prevent="submit">
                     <div class="form-group row">
-                        <label for="title" class="col-sm-3 col-form-label">Name</label>
+                        <p>{{title.name}}</p>
+                    </div>
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-form-label">Chapter_Name</label>
                         <input type="text" class="col-sm-9 form-control" id="name" v-model="chapter.name">
                     </div>
                     <div class="form-group row">
