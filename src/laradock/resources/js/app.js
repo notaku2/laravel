@@ -65,7 +65,7 @@ const routes = [
     {path: '/chapters/:chapterId/edit', name: 'chapter.edit', component: ChapterEditComponent, props: true},
     {path: '/questions', name: 'question.list', component: QuestionListComponent},
     {path: '/questions/:questionId', name: 'question.show', component: QuestionShowComponent, props: true},
-    {path: '/questions/create', name: 'question.create', component: QuestionCreateComponent},
+    {path: '/questions/create', name: 'question.create', component: QuestionCreateComponent, props: true},
     {path: '/questions/:questionId/edit', name: 'question.edit', component: QuestionEditComponent, props: true},
     {path: '/answers', name: 'answer.list', component: AnswerListComponent},
     {path: '/answers/:answerId', name: 'answer.show', component: AnswerShowComponent, props: true},
